@@ -1,5 +1,4 @@
 import streamlit as st
-from connect import cursor, conn, obtener_datos
 import matplotlib.pyplot as plt
 import matplotlib
 import seaborn as sns
@@ -8,22 +7,21 @@ import numpy as np
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
+import os
 
 warnings.filterwarnings("ignore")
 
+DATA_DIR=os.getenv("DATA_DIR","data")
     
-usa_states = pd.read_csv("../files/data/usa_states.csv")
-usa_cities = pd.read_csv("../files/data/usa_cities.csv")
-clients = pd.read_csv("../files/data/usa_clients.csv", index_col=0)
-usa_attractions = pd.read_csv("../files/data/usa_attractions.csv", index_col=0)
+usa_states = pd.read_csv(f"{DATA_DIR}/usa_states.csv")
+usa_cities = pd.read_csv(f"{DATA_DIR}/usa_cities.csv")
+clients = pd.read_csv(f"{DATA_DIR}/usa_clients.csv", index_col=0)
+usa_attractions = pd.read_csv(f"{DATA_DIR}/usa_attractions.csv", index_col=0)
 usa_attractions["n_reviews"].fillna(usa_attractions["n_reviews"].mean() ,inplace=True)
 
-hotels = pd.read_csv("../files/data/usa_hotels.csv", index_col=0)
+hotels = pd.read_csv(f"{DATA_DIR}/usa_hotels.csv", index_col=0)
 hotels = pd.merge(hotels, usa_states[['state', 'state_id']], on='state', how="left")
 hotels = pd.merge(hotels, usa_cities[['city', 'state_id', 'latitude', 'longitude', 'population']], on=['state_id', 'city'], how='left')
-
-
-
 
 st.set_page_config(
     layout="wide",

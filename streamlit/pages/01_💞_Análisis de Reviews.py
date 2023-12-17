@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-from connect import cursor, conn
 import matplotlib.pyplot as plt
 import matplotlib
 import seaborn as sns
@@ -11,11 +10,16 @@ import numpy as np
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
+import os
 
 warnings.filterwarnings("ignore")
 
-clients = pd.read_csv("../files/data/usa_clients.csv", index_col=0)
-clients_reviews = pd.read_csv("../files/data/usa_clients_reviews.csv", index_col=0)
+DATA_DIR=os.getenv("DATA_DIR","data")
+FILE_CLIENT=f"{DATA_DIR}/usa_clients.csv"
+FILE_CLIENT_REVIEWS=f"{DATA_DIR}/usa_clients_reviews.csv"
+
+clients = pd.read_csv(FILE_CLIENT, index_col=0)
+clients_reviews = pd.read_csv(FILE_CLIENT_REVIEWS, index_col=0)
 
 clients_reviews['date'] = pd.to_datetime(clients_reviews['date'])
 

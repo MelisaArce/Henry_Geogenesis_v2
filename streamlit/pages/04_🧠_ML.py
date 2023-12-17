@@ -19,15 +19,13 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import os
 
-from connect import cursor, conn
+DATA_DIR=os.getenv("DATA_DIR","data")
 
-
-california_hotels = pd.read_csv("../files/data/booking/california_hotels.csv", index_col=0)
-matrix = pd.read_csv("../files/data/booking/california_hotels_similarity_matrix.csv", index_col=0)
+california_hotels = pd.read_csv(f"{DATA_DIR}/california_hotels.csv", index_col=0)
+matrix = pd.read_csv(f"{DATA_DIR}/california_hotels_similarity_matrix.csv", index_col=0)
 california_hotels = california_hotels[california_hotels["avg_score"] > 10]
-
-
 
 st.set_page_config(
     #page_title="Tu Aplicación",
@@ -35,10 +33,6 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
-
-
-
-
 
 # FILTERS
 
@@ -48,9 +42,6 @@ filtered_hotel = california_hotels.loc[california_hotels['name'] == selected_cli
 california_hotels['similarity'] = matrix[f"{filtered_hotel.index[0]}"]
 
 california_hotels = california_hotels.sort_values(by='similarity', ascending=False)
-
-
-
 
 # Define color mapping for the top 25 and the rest
 color_map = {
@@ -69,9 +60,6 @@ fig.update_layout(scene=dict(xaxis=dict(autorange="reversed")))
 fig.update_traces(marker=dict(size=3, sizemode='diameter'))
 fig.update_layout(width=1500, height=800, margin=dict(t=5))  # Adjust the top margin
 fig.update(layout_coloraxis_showscale=False)
-
-
-
 
 col1, col2= st.columns((2, 2))
 with col1:

@@ -3,7 +3,6 @@ import pandas as pd
 import psycopg2
 import numpy as np
 import matplotlib
-from connect import cursor, conn
 import seaborn as sns
 import matplotlib.pyplot as plt
 
