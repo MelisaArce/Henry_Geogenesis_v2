@@ -24,7 +24,8 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: latest
+          tags: melisaarce/henry-geogenesis:latest
+
       
   deploy:
     needs: push_to_registry
