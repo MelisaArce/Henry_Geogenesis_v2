@@ -23,13 +23,14 @@ import os
 
 DATA_DIR=os.getenv("DATA_DIR","data")
 
-california_hotels = pd.read_csv(f"{DATA_DIR}/california_hotels.csv", index_col=0)
+california_hotels = pd.read_csv(f"{DATA_DIR}/california_hotels1.csv", index_col=0)
 matrix = pd.read_csv(f"{DATA_DIR}/california_hotels_similarity_matrix.csv", index_col=0)
-california_hotels = california_hotels[california_hotels["avg_score"] > 10]
+
+#california_hotels_mascara = california_hotels[california_hotels["avg_score"] > 10]
 
 st.set_page_config(
-    #page_title="Tu Aplicación",
-    #page_icon=":chart_with_upwards_trend:",
+    page_title="Tu Aplicación",
+    page_icon=":chart_with_upwards_trend:",
     layout="wide",
     initial_sidebar_state="expanded"
 )
