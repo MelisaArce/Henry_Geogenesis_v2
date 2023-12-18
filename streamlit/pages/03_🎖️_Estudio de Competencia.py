@@ -13,7 +13,7 @@ DATA_DIR=os.getenv("DATA_DIR","data")
 usa_states = pd.read_csv(f"{DATA_DIR}/usa_states.csv")
 usa_cities = pd.read_csv(f"{DATA_DIR}/usa_cities.csv")
 clients = pd.read_csv(f"{DATA_DIR}/usa_clients.csv", index_col=0)
-california_hotels = pd.read_csv(f"{DATA_DIR}/california_hotels1.csv", index_col=0)
+california_hotels = pd.read_csv(f"{DATA_DIR}/california_hotels.csv", index_col=0)
 matrix = pd.read_csv(f"{DATA_DIR}/california_hotels_similarity_matrix.csv", index_col=0)
 
 california_hotels = california_hotels[california_hotels["avg_score"] > 10]

@@ -1,0 +1,10 @@
+version: '3.9'
+
+services:
+  streamlit:
+    build: ./
+    environment:
+      - DATA_DIR=/usr/src/streamlit/data
+      - IMG_DIR=/usr/src/streamlit/img
+    ports:
+      - 8501:8501
