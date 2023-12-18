@@ -1,14 +1,9 @@
 import streamlit as st
-import matplotlib.pyplot as plt
-import matplotlib
-import seaborn as sns
 import warnings
-import numpy as np
 import pandas as pd
 import plotly.express as px
-import plotly.graph_objects as go
 import os
-
+from scipy import stats
 warnings.filterwarnings("ignore")
 
 DATA_DIR=os.getenv("DATA_DIR","data")
@@ -105,7 +100,7 @@ bar_chart.update_layout(margin=dict(b=1))
 top_cities = px.bar(hotel_count_by_city.head(10), x='city', y='hotel_count', height=300, width=300, title='Top cities with most hotels:')
 
 
-from scipy import stats
+
 def remove_outliers_zscore(df, column, threshold=3):
     z_scores = stats.zscore(df[column])
     df_no_outliers = df[(z_scores < threshold) & (z_scores > -threshold)]

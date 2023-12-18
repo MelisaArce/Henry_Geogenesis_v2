@@ -1,10 +1,4 @@
 import streamlit as st
-import pandas as pd
-import psycopg2
-import numpy as np
-import matplotlib
-import seaborn as sns
-import matplotlib.pyplot as plt
 
 img_logo = "img/Geogenesis_logo.png"
 # Mostrar la imagen con tamaño y alineación personalizados

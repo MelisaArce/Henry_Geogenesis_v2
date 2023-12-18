@@ -1,12 +1,9 @@
 import streamlit as st
-import matplotlib.pyplot as plt
-import matplotlib
-import seaborn as sns
 import warnings
-import numpy as np
 import pandas as pd
 import plotly.express as px
-import plotly.graph_objects as go
+import ast
+from collections import Counter
 import os
 
 warnings.filterwarnings("ignore")
@@ -64,8 +61,7 @@ avg_count = px.histogram(df_avg_scores, x='avg_score',
                    labels={'avg_score': 'Avg Score', 'count': 'Cantidad de Hoteles'},
                    template='plotly_white')
 
-import ast
-from collections import Counter
+
 df_copy = california_hotels.copy()
 df_copy['attributes'] = df_copy['attributes'].apply(lambda x: ast.literal_eval(x) if pd.notna(x) else [])
 all_attributes = [attribute for sublist in df_copy['attributes'] for attribute in sublist]
