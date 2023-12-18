@@ -1,0 +1,24 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag melisaarce/henry-geogenesis:latest
+      
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Deploy on Render
+      run: curl $RENDER_DEPLOY_HOOK
